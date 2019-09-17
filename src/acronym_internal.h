@@ -1,5 +1,5 @@
-#ifndef ACRONYM_H
-#define ACRONYM_H
+#ifndef ACRONYM_INTERNAL_H
+#define ACRONYM_INTERNAL_H
 
 /**
  * \brief   Utility function to shift char pointer right until first alphanumeric character
@@ -30,4 +30,4 @@ static int isExceptionCharacter(char x);
  */
 static const char * skipWord(const char * phrase);
 
-#endif
+#endif /* ACRONYM_INTERNAL_H */
