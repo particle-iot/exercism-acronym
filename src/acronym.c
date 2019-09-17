@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "acronym.h"
+#include "acronym_internal.h"
 
 static const char * findNextWord(const char * phrase)
 {
