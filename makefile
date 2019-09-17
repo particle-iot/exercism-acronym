@@ -17,6 +17,12 @@ ASANFLAGS  = -fsanitize=address
 ASANFLAGS += -fno-common
 ASANFLAGS += -fno-omit-frame-pointer
 
+# Compilation for test coverage
+GCOVCC=gcc -fprofile-arcs -ftest-coverage
+
+# Static analysis
+CLANG=clang-tidy
+
 test: tests.out
 	@./tests.out
 
@@ -32,11 +38,11 @@ tests.out: test/*.c src/*.c src/*.h
 
 clang: test/*.c src/*.c src/*.h
 	@echo Compiling with clang
-	clang-tidy $(CFLAGS) src/*.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
+	$(CLANG) $(CFLAGS) src/*.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
 
 gcov: test/*.c src/*.c src/*.h
 	@echo Compiling with gcov
-	gcc -fprofile-arcs -ftest-coverage $(CFLAGS) src/*.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
+	$(GCOVCC) $(CFLAGS) src/*.c test/vendor/unity.c test/*.c -o tests.out $(LIBS)
 	./tests.out
 	gcov acronym.c
 	cat acronym.c.gcov | grep "####"
