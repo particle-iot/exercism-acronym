@@ -60,5 +60,15 @@ exit:
         free(retval);
         retval = NULL;
     }
+    if ((REALLOCATE_RETURN_BUF>0) && retval && ((phrase_len - odx) > REALLOCATE_RETURN_BUF)) {
+        // Allocated buffer has maximum length. If there are too much memory wasted,
+        // try to reallocate the buffer with acronym's size
+        char * reallocated = calloc(odx+1, sizeof(char));
+        if (reallocated != NULL) {
+            strcpy(reallocated, retval);
+            free(retval);
+            retval = reallocated;
+        }
+    }
     return retval;
 }

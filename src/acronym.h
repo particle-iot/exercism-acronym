@@ -3,6 +3,7 @@
 
 #define MIN_INPUT_LENGTH 1          /*!< Minimal length of input can be abbreviated */
 #define MIN_ABBREVIATION_LENGTH 1   /*!< Minimal meaningful length of abbreviation */
+#define REALLOCATE_RETURN_BUF   4   /*!< Reallocation threshold, set to 0 if no reallocation */
 
 /** \brief abbreviate returns capitalized first letters of the words found in phrase
  *
